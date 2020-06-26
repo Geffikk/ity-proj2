@@ -1,0 +1,148 @@
+\documentclass[11pt, a4paper, twocolumn ]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[top=2.5cm, left=1.5cm, text={18cm, 25cm}]{geometry}
+\usepackage[czech]{babel} 
+\usepackage[IL2]{fontenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{turnstile}
+\usepackage{caption}
+\usepackage[unicode]{hyperref}
+\usepackage{times}
+
+\newtheorem{thm}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definice}
+\newtheorem{mysnt}{Věta}
+
+
+\begin{document}
+
+    \begin{titlepage}
+        \begin{center}
+            {\Huge \textsc{Fakulta informačních technologií \\
+            \vspace{\stretch{0.015}}
+                            Vysoké učení technické v Brně}}\\
+            
+            \vspace{\stretch{0.4}}
+            \LARGE
+            {Typografie a publikování\,--\,2. projekt \\
+            Sazba dokumentů a matematických výrazů}\\
+            \vspace{\stretch{0.6}}
+    \end{center}
+
+    {\Large {2019 \hfill Maroš Geffert (xgeffe00)}}
+\end{titlepage}
+
+\label{page}
+
+\section*{Úvod}
+V~této úloze si vyzkoušíme sazbu titulní strany, matematických vzorců, prostředí a~dalších textových struktur obvyklých pro~technicky zaměřené texty (například rovnice~(\ref{r1}) nebo Definice \ref{definition_zasobnikovy_automat} na~strane \pageref{definition_zasobnikovy_automat}). Pro odkazovaní na~vzorce a~struktury zásadně používáme příkaz \verb|\label| a~\verb|\ref| případně \verb|\pageref| pokud se chceme odkázat na~stranu výskytu.\par
+Na~titulní straně je využito sázení nadpisu podle optického středu s~využitím zlatého řezu. Tento postup byl probírán na~přednášce. Dále je použito odřádkování se zadanou relativní velikostí 0.4 em a~0.3 em.
+
+\section{Matematický text}
+Nejprve se podíváme na~sázení matematických symbolů a~výrazů v~plynulém textu včetně sazby definic a~vět s~využitím balíku \texttt{amsthm}. Rovněž použijeme poznámku podčarou s~použitím příkazu \verb|\footnote|. Někdy je vhodné použít  \verb|\mbox{}|, která říká, že text nemá být zalomen.\medskip
+
+\begin{definition}
+    \label{definition_zasobnikovy_automat}
+    Zásobníkový automat \emph{(ZA) je definován jako sedmice tvaru $A = (Q,\Sigma,\Gamma,\delta,q_0,Z_0,F)$, kde:}
+
+\begin{itemize}
+    \item $Q$ je \emph{konečná množina} vnitřních (řídicích) stavů,
+    \item $\Sigma$ je \emph{konečná} vstupní abeceda,
+    \item $\Gamma$ je \emph{konečná} zásobníková abeceda,
+    \item $\delta$ je přechodová funkce $Q \times (\Sigma \cup \{{\epsilon}\}) \times \Gamma \rightarrow 2^{Q\times\Gamma^*}$,
+    \item $q_0 \in Q$ je počáteční stav, $Z_0 \in \Gamma$ je startovací symbol zásobníku $F \subseteq Q$ je množina koncových stavů.
+\end{itemize}
+\smallskip
+\par
+Nechť $P = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)$ je zásobníkový auto-mat. \emph{Konfigurací} nazveme trojici $(q, w, \alpha) \in Q \times \Sigma^{*} \times \Gamma^{*}$, kde $q$ je aktuální stav vnitřního řízení, $\omega$ je dosud~nezpracovaná část vstupního řetězce a $\alpha = Z_{i_1} Z_{i_2} \dots Z_{i_k}$ je obsah zásobníku\footnote{$Z_{i_1}$ je vrchol zásobniku}.
+\end{definition} 
+
+\subsection{Podsekce obsahující větu a odkaz}
+\begin{definition}
+    \label{definition_retazec}
+    Řetězec $w$ nad abecedou $\Sigma$ je přijat ZA \emph{A jestliže} $(q_0, w, Z_0)\underset{A}{\overset{*}{\vdash}}(q_F, \epsilon, \gamma)$ \textit{pro nějaké} $ \gamma \in$ $\Gamma^*$ \emph{a} $q_F \in F$. 
+    Množinu $L(A) = \{w\: |\: w\: \textit{je přijat ZA A}\} \subseteq \Sigma^*$ \emph{nazýváme} jazyk přijímaný TS $M$.\par \medskip
+    Nyní si vyzkoušíme sazbu vět a~důkazů opět s~použitím balíku \texttt{amsthm}. \par
+
+\end{definition}
+
+\begin{mysnt}
+    \label{snt}
+    \emph {Třída jazyků, které jsou přijímány ZA, odpovídá}
+    bezkontextovým jazykům.
+
+    \begin{proof}[Důkaz]
+      V~důkaze vyjdeme z~Definice \ref{definition_zasobnikovy_automat} a \ref{definition_retazec}.
+    \end{proof}
+\end{mysnt}
+
+\section{Rovnice a odkazy}
+Složitější matematické formulace sázíme mimo plynulý
+text. Lze umístit několik výrazů na~jeden řádek, ale pak je
+třeba tyto vhodně oddělit, například příkazem \verb|\quad|.\\ \\
+$\sqrt[i]{x^3_i}$\quad kde $x_i$ je $i$-té sudé číslo splňující\quad $x_i^{2-{x_i^{i^2}}} \leq x_i^{y_i^3}$ \smallskip \par
+V~rovnici (\ref{r1}) jsou využity tři typy závorek s~různou explicitně definovanou velikostí.
+
+\begin{eqnarray}
+    x & = & \bigg[\Big\{\big[a+b\big] * c \Big\}^d \ominus 1 \bigg]^{1/2}  \label{r1} \\
+    y & = & \lim_{x\to\infty}\frac{\frac{1}{\log_{10}\,{x}}}{\sin^2\,{x} + \cos^2\,{x}}\nonumber
+\end{eqnarray}\par
+
+V~této větě vidíme, jak vypadá implicitní vysázení limity $\lim_{n \to \infty} f(n)$ v~normálním odstavci textu. Podobně je to i~s~dalšími symboly jako $\prod_{i=1}^n$ $2^i$ či $\cap_{A \in \mathcal{B}} A$. V~pří-padě vzorců $\lim\limits_{n \to \infty} f(n)$ a $\prod\limits_{i=1}^n 2^i$ jsme si vynutili méně úspornou sazbu příkazem \verb|\limits|.
+
+\begin{eqnarray}
+		\int\limits^a_b g(x) \, \mathrm{d}x & = & - \int^b_a f(x) \, \mathrm{d}x \\
+		\overline{\overline{A \vee B}} & \Leftrightarrow & \overline{\overline{A} \wedge \overline{B}}
+\end{eqnarray}
+
+\section{Matice}
+Pro~sázení matic se velmi často používá prostředí \texttt{array} a~závorky (\verb|\left|, \verb|\right|).
+
+$$
+\left[
+\begin{array}{ccc}
+ & \widehat{\beta + \gamma} & \hat{\pi} \\
+\vec{a} & \overleftrightarrow{AC} &
+\end{array}
+\right]
+= 1 \Longleftrightarrow \mathbb{Q} = \mathbf{R}
+$$
+
+$$
+		\mathbf{A} =
+		\left|
+		\begin{array}{cccc}
+			a_{11} & a_{12} & \ldots & a_{1n} \\
+			a_{21} & a_{22} & \ldots & a_{2n} \\
+			\vdots & \vdots & \ddots & \vdots \\
+			a_{m1} & a_{m2} & \ldots & a_{mn}
+		\end{array}
+		\right|
+		=
+		\left.
+		\begin{array}{cc}
+			t & u \\
+			v & w
+		\end{array}
+		\right.
+		= tw - uv
+$$
+
+Prostředí \texttt{array} lze úspěšně využít i~jinde.
+
+$$
+		\binom{n}{k} =
+		\left\{
+		\begin{array}{ll}
+		    0 & \text{pro } k < 0 \text{ nebo } k > n \\
+			\frac{n!}{k! (n - k)!} & \text{pro } 0 \leq k \leq n 
+		\end{array}
+		\right.
+$$
+
+\end{document}
+
